@@ -3,10 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import PokemonContext from '../global/Context';
 import PokemonCardPokedex from '../components/PokemonCardPokedex';
-import { Typography } from '@mui/material';
-import { Pagination } from '@mui/material';
 import logo from "../assents/Logo.png";
-import { ContainerHome, Pagina } from "./styled";
+import { ContainerHome } from "./styled";
 import styled from 'styled-components';
 
 const Container = styled.div` 
@@ -50,11 +48,6 @@ const Pokedex = () => {
     const pokedex = states.pokedex
     const setPokedex = setters.setPokedex
 
-    const count = (pokedex.length / 20)
-
-    const page = states.page
-    const setPage = setters.setPage
-
     const history = useHistory()
 
     const cardsPoke = pokedex.map((poke) => {
@@ -72,10 +65,6 @@ const Pokedex = () => {
         history.push(`/`)
     }
 
-    const handleChange = (event, value) => {
-        setPage(value)
-    }
-
     if (pokedex.length !== 0) {
 
         return <Container>
@@ -91,11 +80,6 @@ const Pokedex = () => {
             <ContainerHome>
                 {cardsPoke}
             </ContainerHome>
-            <Pagina>
-                <Typography>Página: {page}</Typography>
-                <Pagination count={Math.ceil(count)} variant="outlined" color="primary" shape='rounded' page={page} onChange={handleChange} />
-            </Pagina>
-
         </Container>;
     } else {
         return <Container>
@@ -109,10 +93,6 @@ const Pokedex = () => {
             <ContainerHome>
                 <p>Nenhum pokemon adicionado.</p>
             </ContainerHome>
-            <Pagina>
-                <Typography>Página: {page}</Typography>
-                <Pagination count={Math.ceil(count)} variant="outlined" color="primary" shape='rounded' page={page} onChange={handleChange} />
-            </Pagina>
         </Container>
     }
 

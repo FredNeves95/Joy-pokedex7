@@ -15,6 +15,7 @@ border-radius: 20px;
 width: 250px;
 height: 250px;
 margin: 20px;
+text-align: center;
 
 img{
     width: 85%;
